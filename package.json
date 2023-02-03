@@ -5,7 +5,7 @@
   "scripts": {
     "tsc": "tsc",
     "test": "tsc && node dist/test.js",
-    "start": "tsc && node dist/main.js"
+    "start": "tsc && node dist/main.js --template=周报"
   },
   "keywords": [],
   "author": "",
