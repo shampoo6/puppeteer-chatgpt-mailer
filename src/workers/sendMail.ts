@@ -1,4 +1,4 @@
-import {getBodyContent, mixRequires, renderPrompts, renderString} from "../utils/utils";
+import {getBodyContent, render, renderString} from "../utils/utils";
 import {chatConfig} from "../config/chatConfig";
 import path from "path";
 import {MailTemplate} from "../types/MailTemplate";
@@ -16,10 +16,12 @@ export default async function (): Promise<void> {
 
     // 构造询问AI的问题
     // 构造要求
-    const requires = mixRequires([...chatConfig.requires, ...template.requires])
-    let question = renderPrompts(requires)
-    question += template.template
-    question = renderString(question, template.params)
+    // const requires = mixRequires([...chatConfig.requires, ...template.requires])
+    // let question = renderPrompts(requires)
+    // question += template.template
+    // question = renderString(question, template.params)
+
+    let question = render(template.template, false, template.requires, template.params)
 
     // 提问
     let content = await AI.getInstance().answer(question)

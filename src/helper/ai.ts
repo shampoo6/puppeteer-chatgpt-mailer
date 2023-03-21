@@ -14,7 +14,7 @@ export class AI {
     // 发送图标(纸飞机)
     private sendIconSelector = '.absolute.p-1.rounded-md.text-gray-500>svg'
     // 会话框容器
-    private conversationContainerSelector = '.flex.flex-col.items-center.text-sm.h-full'
+    private conversationContainerSelector = '.flex.flex-col.items-center.text-sm'
     // 会话框
     private conversationSelector = '.w-full.border-b'
 

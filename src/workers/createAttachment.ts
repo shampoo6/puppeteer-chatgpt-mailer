@@ -3,7 +3,10 @@ import path from "path";
 import {chatConfig} from "../config/chatConfig.js";
 import {MailTemplate} from "../types/MailTemplate";
 import {AI} from '../helper/ai.js'
-import {getBodyContent, mixRequires, renderPrompts, renderString, wait} from "../utils/utils.js";
+import {
+    getBodyContent,
+    render
+} from "../utils/utils.js";
 import {JSDOM} from 'jsdom'
 import fsp from "fs/promises";
 import cp from "child_process";
@@ -21,10 +24,12 @@ export default async function (page: Page): Promise<void> {
 
     // 构造询问AI的问题
     // 构造要求
-    const requires = mixRequires([...chatConfig.requires, ...chatConfig.attachmentsRequires, ...templateConfig.attachmentsRequires])
-    let question = renderPrompts(requires)
-    question += chatConfig.attachmentTemplate
-    question = renderString(question, templateConfig.params)
+    // const requires = mixRequires([...chatConfig.requires, ...chatConfig.attachmentsRequires, ...templateConfig.attachmentsRequires])
+    // let question = renderPrompts(requires)
+    // question += chatConfig.attachmentTemplate
+    // question = renderString(question, templateConfig.params)
+
+    let question = render(chatConfig.attachmentTemplate, true, templateConfig.attachmentsRequires, templateConfig.params)
 
     await clearFile()
     await makeFile(question)

@@ -4,7 +4,7 @@ import {chatConfig} from "../config/chatConfig.js";
 
 // 登录流程
 export default async function (page: Page): Promise<void> {
-    const loginBtnSelector = '.btn.flex.justify-center.gap-2:nth-child(1)'
+    const loginBtnSelector = '.btn.relative.btn-primary:nth-child(1)'
     await page.waitForSelector(loginBtnSelector)
     await wait(2000)
     await page.click(loginBtnSelector)

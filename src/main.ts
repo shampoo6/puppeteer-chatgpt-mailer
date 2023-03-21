@@ -1,9 +1,9 @@
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
-import signInChat from "./workers/signInChat.js";
-import createAttachment from "./workers/createAttachment.js";
 import {AI} from "./helper/ai";
 import sendMail from "./workers/sendMail.js";
+import signInChat from "./workers/signInChat";
+import createAttachment from "./workers/createAttachment";
 
 puppeteer.use(StealthPlugin());
 

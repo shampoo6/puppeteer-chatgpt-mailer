@@ -39,3 +39,30 @@ export function getBodyContent(html: string) {
     html = html.match(/(?<=<body>)[\s\S]*(?=<\/body>)/)[0]
     return html
 }
+
+/**
+ * 渲染询问ai的问题
+ * @param template ejs模板
+ * @param isAttachment 是否是附件内容
+ * @param requires 其他自定义要求
+ * @param params ejs模板参数
+ */
+export function render(template: string, isAttachment: boolean, requires: string[], params?: Record<string, string>): string {
+    // 构造需求
+    let _requires = !isAttachment ? [...chatConfig.requires, ...requires] : [...chatConfig.requires, ...chatConfig.attachmentsRequires, ...requires]
+    let reqStr = mixRequires(_requires)
+
+    // 填充问题参数
+    reqStr = renderString(reqStr, params)
+
+    // 构造问题前缀
+    reqStr = renderPrompts(reqStr)
+
+    // 渲染模板前，先将<%=ai%>替换成<%%=ai%%>
+    template = template.replace(/<%=ai%>/g, '<%%=ai%%>')
+
+    // 填充模板参数
+    template = renderString(template, params)
+
+    return reqStr + '\n' + template
+}
