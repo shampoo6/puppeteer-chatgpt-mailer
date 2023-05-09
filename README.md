@@ -1,5 +1,7 @@
 # puppeteer-chatgpt-mailer
 
+> 该项目已转移到了 [puppeteer-chatgpt-mailer](https://github.com/shampoo6/puppeteer-chatgpt-mailer) 
+
 通过 OpenAI 的 ChatGPT 帮助完成并发送邮件
 
 ## 特点
